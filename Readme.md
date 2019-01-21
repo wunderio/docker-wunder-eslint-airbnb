@@ -26,3 +26,5 @@ If you want to be able to run ESLint as if it was installed on your host locally
 Check current folder.
 
     eslint .
+
+### See extras/README.md on how to enable this during git commit.

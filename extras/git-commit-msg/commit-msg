@@ -1,0 +1,23 @@
+#!/bin/bash
+files=$(git diff --cached --name-only | grep '\.js\?$')
+
+# Script from https://gist.github.com/wesbos/8aec9d2ff7f7cf9dd65ca2c20d5dfc23
+# Changed eslint command to docker command.
+
+# Prevent ESLint help message if no files matched
+if [[ $files = "" ]] ; then
+  exit 0
+fi
+
+failed=0
+for file in ${files}; do
+  git show :$file | docker run --rm --volume $(pwd)/:/app/:cached hkirsman/wunder-eslint-airbnb $file
+  if [[ $? != 0 ]] ; then
+    failed=1
+  fi
+done;
+
+if [[ $failed != 0 ]] ; then
+  echo "ESLint failed, git commit denied!"
+  exit $failed
+fi
