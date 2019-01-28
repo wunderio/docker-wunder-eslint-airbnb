@@ -11,7 +11,7 @@ fi
 
 failed=0
 for file in ${files}; do
-  git show :$file | docker run --rm --volume $(pwd)/:/app/:cached hkirsman/wunder-eslint-airbnb --config=/eslint/.eslintrc $file
+  git show :$file | docker run --rm --volume $(pwd)/:/app/:cached hkirsman/wunder-eslint-airbnb --config=/eslint/.eslintrc-jquery $file
   if [[ $? != 0 ]] ; then
     failed=1
   fi

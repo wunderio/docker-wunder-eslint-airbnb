@@ -18,7 +18,18 @@ If you want to be able to run ESLint as if it was installed on your host locally
             -t \
             -i \
             --volume $(pwd)/:/app/:cached \
-            hkirsman/wunder-eslint-airbnb $@
+            hkirsman/wunder-eslint-airbnb --config=/eslint/.eslintrc $@
+    }
+
+### Linux/Mac with jQuery support
+
+    eslint () {
+        docker run \
+            --rm \
+            -t \
+            -i \
+            --volume $(pwd)/:/app/:cached \
+            hkirsman/wunder-eslint-airbnb --config=/eslint/.eslintrc-jquery $@
     }
 
 ### Example usage

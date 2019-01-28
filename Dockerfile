@@ -3,6 +3,7 @@ FROM node:carbon-alpine
 RUN mkdir /eslint
 
 COPY .eslintrc /eslint/
+COPY .eslintrc-jquery /eslint/
 
 # Install ESLint.
 RUN npm install -g eslint
@@ -14,4 +15,4 @@ RUN npx install-peerdeps -g eslint-config-airbnb
 WORKDIR /app
 
 # Set entrypoint to eslint and set configuration file path.
-ENTRYPOINT ["eslint", "--config=/eslint/.eslintrc"]
+ENTRYPOINT ["eslint"]
