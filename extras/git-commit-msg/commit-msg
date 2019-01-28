@@ -18,6 +18,7 @@ for file in ${files}; do
 done;
 
 if [[ $failed != 0 ]] ; then
-  echo "ESLint failed, git commit denied!"
+  echo "ESLint failed, git commit denied! Use this command to apply automatic fixes:"
+  echo "docker run --rm --volume $(pwd)/:/app/:cached hkirsman/wunder-eslint-airbnb --config=/eslint/.eslintrc --fix YOUR-JS-FILE.js"
   exit $failed
 fi
